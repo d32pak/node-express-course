@@ -11,14 +11,15 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/users', function(req,res){
+app.get('/users/:id', function(req,res){
+    console.log(req.params.id);
     res.json({
         success: true,
-        message: 'successfully got users. Nice!',
-        users: mockUserData
+        message: 'Got one user!',
+        users: req.params.id
     })
 })
 
 app.listen(port,function(){
-    console.log("Express server is running")
+    console.log("Expressjs is running")
 })
