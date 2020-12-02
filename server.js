@@ -1,9 +1,9 @@
 // Setting up express
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
 // Setting body-parser
-const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 const mockUserData=[
@@ -12,7 +12,16 @@ const mockUserData=[
 ]
 
 app.get('/', (req, res) => {
+    console.log('Index');
     res.send('Hello World!')
+})
+
+app.get('/profile',(req,res) =>{
+    console.log('Profiles');
+    res.json({
+        success: true,
+        message: 'User profiles'
+    })
 })
 
 app.get('/users',function(req,res){
@@ -33,6 +42,7 @@ app.get('/users/:id', function(req,res){
 })
 
 app.post('/login', function(req,res) {
+    console.log('Login');
     const username=req.body.username;
     const password=req.body.password;
 
@@ -53,5 +63,5 @@ app.post('/login', function(req,res) {
 })
 
 app.listen(port,function(){
-    console.log("Expressjs is running")
+    console.log("Expressjs is listening")
 })
